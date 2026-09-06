@@ -53,10 +53,10 @@ export const GlobalLoader: React.FC = () => {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentWord}
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.18, ease: 'easeOut' }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.22, ease: 'easeOut' }}
                   className="flex items-center gap-1.5"
                 >
                   <span className="font-mono text-sm tracking-widest text-[#58A6FF] font-semibold lowercase">
@@ -85,7 +85,7 @@ export const GlobalLoader: React.FC = () => {
                         ? '#8B5CF6'
                         : '#30363d',
                     }}
-                    transition={{ duration: 0.2 }}
+                    transition={{ duration: 0.25 }}
                     className="h-1 rounded-full flex-1 max-w-[32px] transition-all"
                     style={{
                       boxShadow: isActive ? '0 0 8px rgba(88,166,255,0.6)' : 'none',

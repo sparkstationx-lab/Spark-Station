@@ -18,7 +18,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onRouteChange }) => 
     "provider": {
       "@type": "Organization",
       "name": "Spark Station",
-      "url": "https://spark-station-2.vercel.app/"
+      "url": "https://sparkstation.vercel.app/"
     },
     "description": "Explore custom web application development, expert UI/UX design, performance branding, search engine optimization, and custom technical solutions at Spark Station.",
     "hasOfferCatalog": {

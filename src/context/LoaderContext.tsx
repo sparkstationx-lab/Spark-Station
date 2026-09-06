@@ -42,7 +42,7 @@ export const LoaderProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     setCurrentWordIndex(0);
   }, [clearTimers]);
 
-  const startCycling = useCallback((wordIntervalMs: number = 220) => {
+  const startCycling = useCallback((wordIntervalMs: number = 600) => {
     clearTimers();
     setCurrentWordIndex(0);
     setIsLoading(true);
@@ -59,9 +59,9 @@ export const LoaderProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }, wordIntervalMs);
   }, [clearTimers]);
 
-  const showLoader = useCallback((durationMs: number = 700): Promise<void> => {
+  const showLoader = useCallback((durationMs: number = 3000): Promise<void> => {
     return new Promise((resolve) => {
-      const stepTime = Math.max(90, Math.floor(durationMs / LOADER_WORDS.length));
+      const stepTime = Math.max(120, Math.floor(durationMs / LOADER_WORDS.length));
       startCycling(stepTime);
 
       autoHideTimeoutRef.current = setTimeout(() => {
@@ -73,9 +73,9 @@ export const LoaderProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   const triggerAction = useCallback(async <T,>(
     action: () => Promise<T> | T | void,
-    minDurationMs: number = 800
+    minDurationMs: number = 3000
   ): Promise<T | void> => {
-    const stepTime = Math.max(100, Math.floor(minDurationMs / LOADER_WORDS.length));
+    const stepTime = Math.max(120, Math.floor(minDurationMs / LOADER_WORDS.length));
     startCycling(stepTime);
 
     const startTime = Date.now();

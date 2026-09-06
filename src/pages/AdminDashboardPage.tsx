@@ -123,7 +123,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onRouteC
       } else {
         setAuthError(res.error || 'Invalid credentials');
       }
-    }, 700);
+    }, 3000);
   };
 
   const handleLogout = () => {
@@ -904,7 +904,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onRouteC
                 </div>
                 <div className="bg-[#161b22]/70 border border-[#30363d]/80 rounded-2xl p-5 backdrop-blur-md text-left">
                   <span className="block text-xs font-bold text-[#58A6FF] uppercase tracking-wider mb-1 font-sans">Agency Domain</span>
-                  <span className="text-sm font-semibold text-white truncate block mt-2">spark-station-2.vercel.app</span>
+                  <span className="text-sm font-semibold text-white truncate block mt-2">sparkstation.vercel.app</span>
                 </div>
               </section>
 

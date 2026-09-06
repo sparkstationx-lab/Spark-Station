@@ -75,12 +75,12 @@ export const TeamMemberProfilePage: React.FC<TeamMemberProfilePageProps> = ({ on
     "worksFor": {
       "@type": "Organization",
       "name": "Spark Station",
-      "url": "https://spark-station-2.vercel.app/"
+      "url": "https://sparkstation.vercel.app/"
     },
     "description": member.bio,
-    "image": "https://spark-station-2.vercel.app" + member.avatarUrl,
+    "image": "https://sparkstation.vercel.app" + member.avatarUrl,
     ...(member.socials?.email && { "email": member.socials.email }),
-    "url": "https://spark-station-2.vercel.app" + `/${member.slug}`
+    "url": "https://sparkstation.vercel.app" + `/${member.slug}`
   };
 
   const hasSocials = member.socials && Object.values(member.socials).some(Boolean);
@@ -92,7 +92,7 @@ export const TeamMemberProfilePage: React.FC<TeamMemberProfilePageProps> = ({ on
         description={member.bio || `Official profile of ${member.name}, ${member.role} at Spark Station.`}
         path={`/${member.slug}`}
         ogType="profile"
-        ogImage={"https://spark-station-2.vercel.app" + member.avatarUrl}
+        ogImage={"https://sparkstation.vercel.app" + member.avatarUrl}
         schemaMarkup={personSchema}
       />
       

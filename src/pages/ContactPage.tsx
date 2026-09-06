@@ -26,7 +26,7 @@ export const ContactPage: React.FC = () => {
       );
       window.open(`https://wa.me/919111376314?text=${text}`, '_blank');
       setSubmitted(true);
-    }, 850);
+    }, 3000);
   };
 
   const handleReset = () => {
@@ -39,7 +39,7 @@ export const ContactPage: React.FC = () => {
     "@type": "ContactPage",
     "name": "Contact Spark Station",
     "description": "Get in touch with Spark Station. Let's discuss your custom web application, UI/UX design, or branding project and build something remarkable together.",
-    "url": "https://spark-station-2.vercel.app/contact",
+    "url": "https://sparkstation.vercel.app/contact",
     "mainEntity": {
       "@type": "Organization",
       "name": "Spark Station",

@@ -25,7 +25,7 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ onRouteChange }) => 
   const [copied, setCopied] = useState(false);
 
   const handleNavigateTo = (path: string) => {
-    showLoader(650);
+    showLoader(3000);
     navigate(path);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -372,20 +372,20 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ onRouteChange }) => 
     "author": {
       "@type": "Person",
       "name": post.author_name,
-      "url": "https://spark-station-2.vercel.app/saksham-pandey"
+      "url": "https://sparkstation.vercel.app/saksham-pandey"
     },
     "publisher": {
       "@type": "Organization",
       "name": "Spark Station",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://spark-station-2.vercel.app/favicon.png"
+        "url": "https://sparkstation.vercel.app/favicon.png"
       }
     },
     "description": post.summary,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://spark-station-2.vercel.app/blog/${post.slug}`
+      "@id": `https://sparkstation.vercel.app/blog/${post.slug}`
     }
   };
 

@@ -73,7 +73,7 @@ export const BlogListPage: React.FC<BlogListPageProps> = ({ onRouteChange }) => 
   }, [activeCategory, searchQuery, sortBy]);
 
   const handlePostClick = (slug: string) => {
-    showLoader(650);
+    showLoader(3000);
     navigate(`/blog/${slug}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -86,8 +86,8 @@ export const BlogListPage: React.FC<BlogListPageProps> = ({ onRouteChange }) => 
     "publisher": {
       "@type": "Organization",
       "name": "Spark Station",
-      "logo": "https://spark-station-2.vercel.app/favicon.png",
-      "url": "https://spark-station-2.vercel.app/"
+      "logo": "https://sparkstation.vercel.app/favicon.png",
+      "url": "https://sparkstation.vercel.app/"
     },
     "blogPost": currentPosts.map(post => ({
       "@type": "BlogPosting",
@@ -97,7 +97,7 @@ export const BlogListPage: React.FC<BlogListPageProps> = ({ onRouteChange }) => 
         "@type": "Person",
         "name": post.author_name
       },
-      "url": `https://spark-station-2.vercel.app/blog/${post.slug}`,
+      "url": `https://sparkstation.vercel.app/blog/${post.slug}`,
       "image": post.featured_image,
       "description": post.summary
     }))

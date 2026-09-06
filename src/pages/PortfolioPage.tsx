@@ -29,7 +29,7 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({ onRouteChange }) =
     "creator": {
       "@type": "Organization",
       "name": "Spark Station",
-      "url": "https://spark-station-2.vercel.app/"
+      "url": "https://sparkstation.vercel.app/"
     }
   };
 

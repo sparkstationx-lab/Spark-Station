@@ -17,23 +17,23 @@ export const HomePage: React.FC<HomePageProps> = ({ onRouteChange }) => {
     "@graph": [
       {
         "@type": "WebSite",
-        "@id": "https://spark-station-2.vercel.app/#website",
-        "url": "https://spark-station-2.vercel.app/",
+        "@id": "https://sparkstation.vercel.app/#website",
+        "url": "https://sparkstation.vercel.app/",
         "name": "Spark Station",
         "description": "Spark Station is a premium digital agency helping businesses grow through modern website development, UI/UX design, branding, SEO, and high-converting digital solutions.",
         "inLanguage": "en",
         "publisher": {
-          "@id": "https://spark-station-2.vercel.app/#organization"
+          "@id": "https://sparkstation.vercel.app/#organization"
         }
       },
       {
         "@type": "Organization",
-        "@id": "https://spark-station-2.vercel.app/#organization",
+        "@id": "https://sparkstation.vercel.app/#organization",
         "name": "Spark Station",
-        "url": "https://spark-station-2.vercel.app/",
+        "url": "https://sparkstation.vercel.app/",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://spark-station-2.vercel.app/favicon.png",
+          "url": "https://sparkstation.vercel.app/favicon.png",
           "caption": "Spark Station Logo"
         },
         "description": "Spark Station is a premium digital agency helping businesses grow through modern website development, UI/UX design, branding, SEO, and high-converting digital solutions.",

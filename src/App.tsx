@@ -72,8 +72,8 @@ function AppContent() {
   }, [location.pathname]);
 
   const handleRouteChange = async (route: PageRoute) => {
-    // Trigger smooth global loading animation
-    showLoader(650);
+    // Trigger smooth global loading animation for 3 seconds
+    showLoader(3000);
 
     if (route === 'home') {
       navigate('/');

@@ -25,8 +25,8 @@ export const TeamPage: React.FC<TeamPageProps> = ({ onRouteChange }) => {
         "@type": "Person",
         "name": member.name,
         "jobTitle": member.role,
-        "image": `https://spark-station-2.vercel.app${member.avatarUrl}`,
-        "url": `https://spark-station-2.vercel.app/${member.slug}`
+        "image": `https://sparkstation.vercel.app${member.avatarUrl}`,
+        "url": `https://sparkstation.vercel.app/${member.slug}`
       }
     }))
   };

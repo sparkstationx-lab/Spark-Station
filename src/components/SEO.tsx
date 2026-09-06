@@ -17,12 +17,12 @@ export const SEO: React.FC<SEOProps> = ({
   description,
   path,
   ogType = 'website',
-  ogImage = 'https://spark-station-2.vercel.app/apple-touch-icon.png', // Default premium brand icon
+  ogImage = 'https://sparkstation.vercel.app/apple-touch-icon.png', // Default premium brand icon
   schemaMarkup,
   robots = 'index, follow',
   themeColor = '#0d1117',
 }) => {
-  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://spark-station-2.vercel.app';
+  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://sparkstation.vercel.app';
   const canonicalUrl = `${origin}${path}`;
 
   return (
