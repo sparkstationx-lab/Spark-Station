@@ -1,0 +1,6 @@
+{
+  "name": "Spark Station",
+  "description": "Digital Solutions Agency website clone featuring modern dark-mode aesthetic, services showcase, team directory, FAQ, and contact consultation workflows.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
