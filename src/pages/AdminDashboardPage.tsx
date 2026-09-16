@@ -8,14 +8,12 @@ import {
 import { PageRoute } from '../types';
 import { SEO } from '../components/SEO';
 import { blogService, BlogPost, isSupabaseConfigured, SUPABASE_SQL_SETUP } from '../lib/supabase';
-import { useLoader } from '../context/LoaderContext';
 
 interface AdminDashboardPageProps {
   onRouteChange: (route: PageRoute) => void;
 }
 
 export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onRouteChange }) => {
-  const { triggerAction } = useLoader();
   // Auth State
   const [isLoggedIn, setIsLoggedIn] = useState(blogService.isLoggedIn());
   const [email, setEmail] = useState('');
@@ -114,16 +112,14 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onRouteC
       return;
     }
     setAuthLoading(true);
-    await triggerAction(async () => {
-      const res = await blogService.login(email, password);
-      setAuthLoading(false);
-      if (res.success) {
-        setIsLoggedIn(true);
-        showToast('Admin logged in successfully', 'success');
-      } else {
-        setAuthError(res.error || 'Invalid credentials');
-      }
-    }, 3000);
+    const res = await blogService.login(email, password);
+    setAuthLoading(false);
+    if (res.success) {
+      setIsLoggedIn(true);
+      showToast('Admin logged in successfully', 'success');
+    } else {
+      setAuthError(res.error || 'Invalid credentials');
+    }
   };
 
   const handleLogout = () => {

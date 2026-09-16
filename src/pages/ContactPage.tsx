@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import { Mail, Phone, MessageCircle, Send, CheckCircle2, ArrowUpRight, HelpCircle, Sparkles } from 'lucide-react';
 import { AGENCY_INFO, SERVICES } from '../data/agencyData';
 import { SEO } from '../components/SEO';
-import { useLoader } from '../context/LoaderContext';
 
 export const ContactPage: React.FC = () => {
-  const { triggerAction } = useLoader();
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -15,18 +13,16 @@ export const ContactPage: React.FC = () => {
     message: '',
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.service || !formData.message) return;
 
-    await triggerAction(async () => {
-      // Build a WhatsApp message URL to instantly send the project brief
-      const text = encodeURIComponent(
-        `*New Project Brief Submission*\n\n*Name:* ${formData.name}\n*Email:* ${formData.email}\n*Phone:* ${formData.phone || 'N/A'}\n*Service:* ${formData.service}\n\n*Message:*\n${formData.message}`
-      );
-      window.open(`https://wa.me/919111376314?text=${text}`, '_blank');
-      setSubmitted(true);
-    }, 3000);
+    // Build a WhatsApp message URL to instantly send the project brief
+    const text = encodeURIComponent(
+      `*New Project Brief Submission*\n\n*Name:* ${formData.name}\n*Email:* ${formData.email}\n*Phone:* ${formData.phone || 'N/A'}\n*Service:* ${formData.service}\n\n*Message:*\n${formData.message}`
+    );
+    window.open(`https://wa.me/919111376314?text=${text}`, '_blank');
+    setSubmitted(true);
   };
 
   const handleReset = () => {

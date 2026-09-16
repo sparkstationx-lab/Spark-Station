@@ -20,13 +20,10 @@ import { BlogListPage } from './pages/BlogListPage';
 import { BlogPostPage } from './pages/BlogPostPage';
 import { AdminDashboardPage } from './pages/AdminDashboardPage';
 import { TEAM } from './data/agencyData';
-import { LoaderProvider, useLoader } from './context/LoaderContext';
-import { GlobalLoader } from './components/GlobalLoader';
 
 function AppContent() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { showLoader } = useLoader();
 
   // Map pathname to PageRoute
   const getActiveRoute = (pathname: string): PageRoute => {
@@ -71,10 +68,7 @@ function AppContent() {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
   }, [location.pathname]);
 
-  const handleRouteChange = async (route: PageRoute) => {
-    // Trigger smooth global loading animation for 3 seconds
-    showLoader(3000);
-
+  const handleRouteChange = (route: PageRoute) => {
     if (route === 'home') {
       navigate('/');
     } else if (route === 'founder') {
@@ -86,7 +80,6 @@ function AppContent() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#0d1117] text-[#c9d1d9] selection:bg-[#58A6FF]/30 selection:text-white">
-      <GlobalLoader />
       <Navbar activeRoute={activeRoute} onRouteChange={handleRouteChange} />
       
       <main className="flex-1 pt-24 md:pt-28 w-full overflow-x-hidden">
@@ -130,9 +123,7 @@ export default function App() {
   return (
     <HelmetProvider>
       <BrowserRouter>
-        <LoaderProvider>
-          <AppContent />
-        </LoaderProvider>
+        <AppContent />
       </BrowserRouter>
     </HelmetProvider>
   );

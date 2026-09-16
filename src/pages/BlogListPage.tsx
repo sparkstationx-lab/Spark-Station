@@ -5,7 +5,6 @@ import { PageRoute } from '../types';
 import { SEO } from '../components/SEO';
 import { CTASection } from '../components/CTASection';
 import { blogService, BlogPost } from '../lib/supabase';
-import { useLoader } from '../context/LoaderContext';
 
 interface BlogListPageProps {
   onRouteChange: (route: PageRoute) => void;
@@ -13,7 +12,6 @@ interface BlogListPageProps {
 
 export const BlogListPage: React.FC<BlogListPageProps> = ({ onRouteChange }) => {
   const navigate = useNavigate();
-  const { showLoader } = useLoader();
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
@@ -73,7 +71,6 @@ export const BlogListPage: React.FC<BlogListPageProps> = ({ onRouteChange }) => 
   }, [activeCategory, searchQuery, sortBy]);
 
   const handlePostClick = (slug: string) => {
-    showLoader(3000);
     navigate(`/blog/${slug}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
