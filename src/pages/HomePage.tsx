@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion, type Variants } from 'motion/react';
 import { Zap, MessageCircle, CodeXml, ArrowRight, CircleCheck, Layers, Award, Sparkles } from 'lucide-react';
 import { AGENCY_INFO, TRUSTED_BADGES, PROBLEMS, SOLUTIONS, PILLARS, SERVICES, TEAM } from '../data/agencyData';
 import { PageRoute } from '../types';
@@ -10,6 +11,21 @@ import { SEO } from '../components/SEO';
 interface HomePageProps {
   onRouteChange: (route: PageRoute) => void;
 }
+
+// Sophisticated cubic-bezier easing curve for smooth agency slide-up reveals
+const customEase = [0.22, 1, 0.36, 1] as const;
+
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 35 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.65,
+      ease: customEase,
+    },
+  },
+};
 
 export const HomePage: React.FC<HomePageProps> = ({ onRouteChange }) => {
   const homeSchema = {
@@ -83,26 +99,70 @@ export const HomePage: React.FC<HomePageProps> = ({ onRouteChange }) => {
       <div className="ambient-glow" />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-20 relative z-10 text-center max-w-5xl mx-auto px-6">
-        <div className="section-label mb-8 animate-fadeIn">
+      <motion.section 
+        className="pt-24 pb-20 relative z-10 text-center max-w-5xl mx-auto px-6"
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.div 
+          className="section-label mb-8"
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: { duration: 0.6, delay: 0.1, ease: customEase }
+            }
+          }}
+        >
           <Sparkles size={14} className="text-[#A371F7]" />
           <span>Digital Solutions Agency</span>
-        </div>
+        </motion.div>
 
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold leading-tight mb-8 tracking-tight text-white">
+        <motion.h1 
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold leading-tight mb-8 tracking-tight text-white"
+          variants={{
+            hidden: { opacity: 0, y: 30 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: { duration: 0.7, delay: 0.2, ease: customEase }
+            }
+          }}
+        >
           We Build <span className="gradient-text">Digital Solutions</span>
           <br />
           That Work
-        </h1>
+        </motion.h1>
 
-        <p className="text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto mb-12 text-[#8b949e] leading-relaxed">
+        <motion.p 
+          className="text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto mb-12 text-[#8b949e] leading-relaxed"
+          variants={{
+            hidden: { opacity: 0, y: 25 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: { duration: 0.7, delay: 0.35, ease: customEase }
+            }
+          }}
+        >
           {AGENCY_INFO.subheadline}
-        </p>
+        </motion.p>
 
-        <div className="flex flex-wrap gap-4 justify-center mb-16">
+        <motion.div 
+          className="flex flex-wrap gap-4 justify-center mb-16"
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: { duration: 0.6, delay: 0.45, ease: customEase }
+            }
+          }}
+        >
           <button
             onClick={() => onRouteChange('contact')}
-            className="btn-primary text-base sm:text-lg !py-4 !px-8 shadow-xl shadow-[#58A6FF]/25"
+            className="btn-primary text-base sm:text-lg !py-4 !px-8 shadow-xl shadow-[#58A6FF]/25 cursor-pointer"
           >
             <Zap size={20} />
             <span>Start Your Project</span>
@@ -112,15 +172,25 @@ export const HomePage: React.FC<HomePageProps> = ({ onRouteChange }) => {
             href={AGENCY_INFO.whatsappUrl}
             target="_blank"
             rel="noreferrer"
-            className="btn-secondary text-base sm:text-lg !py-4 !px-8 hover:text-[#25D366] hover:border-[#25D366]/40"
+            className="btn-secondary text-base sm:text-lg !py-4 !px-8 hover:text-[#25D366] hover:border-[#25D366]/40 cursor-pointer"
           >
             <MessageCircle size={20} />
             <span>Chat on WhatsApp</span>
           </a>
-        </div>
+        </motion.div>
 
         {/* Trusted Badges Banner */}
-        <div className="pt-12 border-t border-[#30363d]/80">
+        <motion.div 
+          className="pt-12 border-t border-[#30363d]/80"
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: { duration: 0.6, delay: 0.55, ease: customEase }
+            }
+          }}
+        >
           <p className="text-xs font-semibold tracking-widest uppercase mb-6 text-[#8b949e]">
             Trusted by growing businesses & founders
           </p>
@@ -132,12 +202,20 @@ export const HomePage: React.FC<HomePageProps> = ({ onRouteChange }) => {
               </span>
             ))}
           </div>
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       {/* Problem & Solution Comparison Section */}
-      <section className="py-24 max-w-6xl mx-auto px-6 border-t border-[#30363d]/60">
-        <div className="text-center mb-16">
+      <motion.section 
+        className="py-24 max-w-6xl mx-auto px-6 border-t border-[#30363d]/60"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+      >
+        <motion.div 
+          className="text-center mb-16"
+          variants={fadeInUp}
+        >
           <span className="section-label">
             <Layers size={14} />
             <span>Why Spark Station</span>
@@ -148,15 +226,23 @@ export const HomePage: React.FC<HomePageProps> = ({ onRouteChange }) => {
           <p className="text-base text-[#8b949e] mt-4 max-w-xl mx-auto">
             Traditional agencies are slow, expensive, and leave you with tangled tech. We do things differently.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* The Problem */}
-          <div
+          <motion.div
             className="ss-card p-8 sm:p-10 relative overflow-hidden"
             style={{
               background: 'linear-gradient(135deg, rgba(239,68,68,0.05), rgba(22,27,34,1))',
               borderColor: 'rgba(239,68,68,0.3)',
+            }}
+            variants={{
+              hidden: { opacity: 0, y: 35 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.65, delay: 0.1, ease: customEase }
+              }
             }}
           >
             <div className="text-red-400 font-display font-bold text-sm tracking-widest uppercase mb-6 flex items-center gap-2">
@@ -175,14 +261,22 @@ export const HomePage: React.FC<HomePageProps> = ({ onRouteChange }) => {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Our Solution */}
-          <div
+          <motion.div
             className="ss-card p-8 sm:p-10 relative overflow-hidden shadow-2xl"
             style={{
               background: 'linear-gradient(135deg, rgba(88,166,255,0.08), rgba(139,92,246,0.08))',
               borderColor: 'rgba(88,166,255,0.4)',
+            }}
+            variants={{
+              hidden: { opacity: 0, y: 35 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.65, delay: 0.25, ease: customEase }
+              }
             }}
           >
             <div className="text-[#58A6FF] font-display font-bold text-sm tracking-widest uppercase mb-6 flex items-center gap-2">
@@ -201,13 +295,21 @@ export const HomePage: React.FC<HomePageProps> = ({ onRouteChange }) => {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Core Services Preview */}
-      <section className="py-24 max-w-7xl mx-auto px-6 border-t border-[#30363d]/60">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+      <motion.section 
+        className="py-24 max-w-7xl mx-auto px-6 border-t border-[#30363d]/60"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.12 }}
+      >
+        <motion.div 
+          className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6"
+          variants={fadeInUp}
+        >
           <div>
             <span className="section-label">
               <CodeXml size={14} />
@@ -220,11 +322,23 @@ export const HomePage: React.FC<HomePageProps> = ({ onRouteChange }) => {
           <p className="text-base text-[#8b949e] max-w-md">
             Everything you need to build, launch, and scale your digital presence. Custom-tailored architecture with zero boilerplate bloat.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {SERVICES.slice(0, 6).map((srv) => (
-            <div key={srv.id} className="ss-card p-8 flex flex-col justify-between group hover:border-[#58A6FF]/50">
+          {SERVICES.slice(0, 6).map((srv, idx) => (
+            <motion.div 
+              key={srv.id} 
+              className="ss-card p-8 flex flex-col justify-between group hover:border-[#58A6FF]/50"
+              variants={{
+                hidden: { opacity: 0, y: 35 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.6, delay: idx * 0.08, ease: customEase }
+                }
+              }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+            >
               <div>
                 <div
                   className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110"
@@ -251,32 +365,55 @@ export const HomePage: React.FC<HomePageProps> = ({ onRouteChange }) => {
                   Explore benefits <ArrowRight size={14} />
                 </button>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        <div className="text-center">
+        <motion.div 
+          className="text-center"
+          variants={fadeInUp}
+        >
           <button
             onClick={() => onRouteChange('services')}
-            className="btn-secondary !px-8 !py-3.5 text-sm"
+            className="btn-secondary !px-8 !py-3.5 text-sm cursor-pointer"
           >
             <span>View All 7 Specialized Services</span>
             <ArrowRight size={16} />
           </button>
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       {/* 4 Pillars Section */}
-      <section className="py-24 max-w-6xl mx-auto px-6 border-t border-[#30363d]/60">
-        <div className="text-center mb-16">
+      <motion.section 
+        className="py-24 max-w-6xl mx-auto px-6 border-t border-[#30363d]/60"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+      >
+        <motion.div 
+          className="text-center mb-16"
+          variants={fadeInUp}
+        >
           <h2 className="text-3xl sm:text-4xl font-display font-bold text-white">
             Our Agency <span className="gradient-text">Pillars</span>
           </h2>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {PILLARS.map((pil, idx) => (
-            <div key={idx} className="ss-card p-8 text-center bg-[#161b22]/50">
+            <motion.div 
+              key={idx} 
+              className="ss-card p-8 text-center bg-[#161b22]/50"
+              variants={{
+                hidden: { opacity: 0, y: 35 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.55, delay: idx * 0.1, ease: customEase }
+                }
+              }}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+            >
               <div className="w-14 h-14 rounded-2xl bg-[#58A6FF]/15 text-[#58A6FF] flex items-center justify-center mx-auto mb-5">
                 <Icon name={pil.icon} size={26} />
               </div>
@@ -286,14 +423,22 @@ export const HomePage: React.FC<HomePageProps> = ({ onRouteChange }) => {
               <p className="text-sm text-[#8b949e] leading-relaxed">
                 {pil.desc}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* Team Snippet */}
-      <section className="py-24 max-w-6xl mx-auto px-6 border-t border-[#30363d]/60">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-14 gap-4">
+      <motion.section 
+        className="py-24 max-w-6xl mx-auto px-6 border-t border-[#30363d]/60"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+      >
+        <motion.div 
+          className="flex flex-col sm:flex-row sm:items-end justify-between mb-14 gap-4"
+          variants={fadeInUp}
+        >
           <div>
             <span className="section-label">People</span>
             <h2 className="text-3xl sm:text-4xl font-display font-bold mt-2 text-white">
@@ -306,11 +451,23 @@ export const HomePage: React.FC<HomePageProps> = ({ onRouteChange }) => {
           >
             View full team directory <ArrowRight size={14} />
           </button>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {TEAM.slice(0, 3).map((mbr, idx) => (
-            <div key={idx} className="ss-card overflow-hidden group">
+            <motion.div 
+              key={idx} 
+              className="ss-card overflow-hidden group"
+              variants={{
+                hidden: { opacity: 0, y: 35 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.6, delay: idx * 0.12, ease: customEase }
+                }
+              }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+            >
               <div className="h-60 overflow-hidden relative bg-[#21262d]">
                 <img
                   src={mbr.avatarUrl}
@@ -336,16 +493,30 @@ export const HomePage: React.FC<HomePageProps> = ({ onRouteChange }) => {
                   {mbr.bio}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* FAQ Section */}
-      <FAQSection />
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.12 }}
+        variants={fadeInUp}
+      >
+        <FAQSection />
+      </motion.div>
 
       {/* CTA Section */}
-      <CTASection onRouteChange={onRouteChange} />
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.12 }}
+        variants={fadeInUp}
+      >
+        <CTASection onRouteChange={onRouteChange} />
+      </motion.div>
     </div>
   );
 };
