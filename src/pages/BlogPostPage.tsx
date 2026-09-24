@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { 
   Calendar, Clock, User, ArrowLeft, ArrowRight, Share2, 
-  Linkedin, Twitter, Instagram, Send, Mail, Link2, Check, Sparkles 
+  Linkedin, Twitter, Instagram, Send, Mail, Link2, Check, Sparkles,
+  MapPin, Briefcase, CodeXml
 } from 'lucide-react';
 import { PageRoute } from '../types';
 import { SEO } from '../components/SEO';
@@ -586,6 +587,79 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ onRouteChange }) => 
             </div>
           </div>
 
+          {/* Related Services Internal Links */}
+          <div className="bg-[#161b22]/40 border border-[#30363d]/50 rounded-2xl p-6">
+            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4 border-b border-[#30363d]/40 pb-2 flex items-center gap-2">
+              <CodeXml size={15} className="text-[#58A6FF]" />
+              <span>Agency Services</span>
+            </h4>
+            <ul className="space-y-2.5 text-xs">
+              <li>
+                <button
+                  onClick={() => handleNavigateTo('/services/web-development')}
+                  className="text-[#8b949e] hover:text-[#58A6FF] transition-colors flex items-center justify-between w-full text-left cursor-pointer group"
+                >
+                  <span className="group-hover:underline">Custom Web Development</span>
+                  <ArrowRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity text-[#58A6FF]" />
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNavigateTo('/services/ui-ux-design')}
+                  className="text-[#8b949e] hover:text-[#58A6FF] transition-colors flex items-center justify-between w-full text-left cursor-pointer group"
+                >
+                  <span className="group-hover:underline">UI/UX Interface Design</span>
+                  <ArrowRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity text-[#58A6FF]" />
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNavigateTo('/services/e-commerce-solutions')}
+                  className="text-[#8b949e] hover:text-[#58A6FF] transition-colors flex items-center justify-between w-full text-left cursor-pointer group"
+                >
+                  <span className="group-hover:underline">E-Commerce Platforms</span>
+                  <ArrowRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity text-[#58A6FF]" />
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNavigateTo('/services/seo-performance')}
+                  className="text-[#8b949e] hover:text-[#58A6FF] transition-colors flex items-center justify-between w-full text-left cursor-pointer group"
+                >
+                  <span className="group-hover:underline">SEO &amp; Performance</span>
+                  <ArrowRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity text-[#58A6FF]" />
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNavigateTo('/services')}
+                  className="text-[#58A6FF] font-semibold hover:underline flex items-center gap-1 pt-2 border-t border-[#30363d]/40 w-full text-left cursor-pointer"
+                >
+                  <span>View All 7 Services</span>
+                  <ArrowRight size={12} />
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* Regional Hub & Portfolio Callout */}
+          <div className="bg-[#161b22]/40 border border-[#30363d]/50 rounded-2xl p-6">
+            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-2 border-b border-[#30363d]/40 pb-2 flex items-center gap-2">
+              <MapPin size={15} className="text-[#34D399]" />
+              <span>Gwalior Agency Hub</span>
+            </h4>
+            <p className="text-xs text-[#8b949e] leading-relaxed mb-3">
+              Need on-site discovery or local delivery in Central India? Explore our dedicated Gwalior agency hub.
+            </p>
+            <button
+              onClick={() => handleNavigateTo('/gwalior')}
+              className="text-xs font-semibold text-[#34D399] hover:underline flex items-center gap-1 cursor-pointer"
+            >
+              <span>Visit Gwalior Agency Hub</span>
+              <ArrowRight size={12} />
+            </button>
+          </div>
+
         </aside>
 
         {/* Main content body */}
@@ -595,6 +669,32 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ onRouteChange }) => 
             {/* Dynamic Content Renderer */}
             <div className="prose prose-invert max-w-none prose-headings:font-display prose-headings:tracking-tight">
               {renderMarkdown(post.content)}
+            </div>
+
+            {/* Practical Implementation & Portfolio Callout */}
+            <div className="my-10 p-6 rounded-xl bg-[#0d1117] border border-[#58A6FF]/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div>
+                <h4 className="text-base font-bold text-white mb-1">
+                  Ready to turn these insights into measurable digital results?
+                </h4>
+                <p className="text-xs text-[#8b949e]">
+                  Explore Spark Station's live case studies or schedule a discovery session with our lead architects.
+                </p>
+              </div>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => handleNavigateTo('/portfolio')}
+                  className="btn-secondary !py-2.5 !px-4 text-xs whitespace-nowrap cursor-pointer"
+                >
+                  View Case Studies
+                </button>
+                <button
+                  onClick={() => handleNavigateTo('/contact')}
+                  className="btn-primary !py-2.5 !px-4 text-xs whitespace-nowrap cursor-pointer"
+                >
+                  Book Discovery
+                </button>
+              </div>
             </div>
 
             {/* Pagination / Prev / Next controls */}

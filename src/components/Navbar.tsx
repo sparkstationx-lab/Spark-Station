@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Zap, MessageCircle, Menu, X } from 'lucide-react';
 import { PageRoute } from '../types';
 import { AGENCY_INFO } from '../data/agencyData';
@@ -25,13 +26,13 @@ export const Navbar: React.FC<NavbarProps> = ({ activeRoute, onRouteChange }) =>
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks: { label: string; route: PageRoute }[] = [
-    { label: 'Home', route: 'home' },
-    { label: 'Services', route: 'services' },
-    { label: 'Portfolio', route: 'portfolio' },
-    { label: 'Blog', route: 'blog' },
-    { label: 'Team', route: 'team' },
-    { label: 'Contact', route: 'contact' },
+  const navLinks: { label: string; route: PageRoute; path: string }[] = [
+    { label: 'Home', route: 'home', path: '/' },
+    { label: 'Services', route: 'services', path: '/services' },
+    { label: 'Portfolio', route: 'portfolio', path: '/portfolio' },
+    { label: 'Blog', route: 'blog', path: '/blog' },
+    { label: 'Team', route: 'team', path: '/team' },
+    { label: 'Contact', route: 'contact', path: '/contact' },
   ];
 
   const handleNavClick = (route: PageRoute) => {
@@ -52,21 +53,23 @@ export const Navbar: React.FC<NavbarProps> = ({ activeRoute, onRouteChange }) =>
         scrolled ? 'h-16' : 'h-20'
       }`}>
         {/* Logo */}
-        <button
+        <Link
+          to="/"
           onClick={() => handleNavClick('home')}
           className="flex items-center text-left focus:outline-none group cursor-pointer"
           aria-label="Spark Station Home"
         >
           <Logo size={40} showText={true} />
-        </button>
+        </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-1 bg-[#161b22]/90 p-1.5 rounded-full border border-[#30363d]" aria-label="Desktop Navigation">
           {navLinks.map((link) => {
             const isActive = activeRoute === link.route;
             return (
-              <button
+              <Link
                 key={link.route}
+                to={link.path}
                 onClick={() => handleNavClick(link.route)}
                 aria-label={`Navigate to ${link.label}`}
                 aria-current={isActive ? 'page' : undefined}
@@ -77,7 +80,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeRoute, onRouteChange }) =>
                 }`}
               >
                 {link.label}
-              </button>
+              </Link>
             );
           })}
         </nav>
@@ -93,13 +96,14 @@ export const Navbar: React.FC<NavbarProps> = ({ activeRoute, onRouteChange }) =>
             <MessageCircle size={16} />
             <span>WhatsApp</span>
           </a>
-          <button
+          <Link
+            to="/contact"
             onClick={() => handleNavClick('contact')}
             className="btn-primary text-sm !py-2.5 !px-5"
           >
             <Zap size={16} />
             <span>Start Project</span>
-          </button>
+          </Link>
         </div>
 
         {/* Mobile Toggle */}
@@ -117,8 +121,9 @@ export const Navbar: React.FC<NavbarProps> = ({ activeRoute, onRouteChange }) =>
         <div className="md:hidden px-6 pb-6 animate-fadeIn border-t border-[#30363d]/50 pt-4">
           <nav className="flex flex-col gap-2 mb-6">
             {navLinks.map((link) => (
-              <button
+              <Link
                 key={link.route}
+                to={link.path}
                 onClick={() => handleNavClick(link.route)}
                 className={`text-left px-4 py-3 rounded-xl text-base font-medium transition-all ${
                   activeRoute === link.route
@@ -127,18 +132,19 @@ export const Navbar: React.FC<NavbarProps> = ({ activeRoute, onRouteChange }) =>
                 }`}
               >
                 {link.label}
-              </button>
+              </Link>
             ))}
           </nav>
 
           <div className="flex flex-col gap-3 pt-4 border-t border-[#30363d]/50">
-            <button
+            <Link
+              to="/contact"
               onClick={() => handleNavClick('contact')}
               className="btn-primary w-full justify-center text-base py-3"
             >
               <Zap size={18} />
               <span>Start Project</span>
-            </button>
+            </Link>
             <a
               href={AGENCY_INFO.whatsappUrl}
               target="_blank"

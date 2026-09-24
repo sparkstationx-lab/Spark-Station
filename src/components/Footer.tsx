@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { MessageCircle, Phone, Mail, ArrowUpRight } from 'lucide-react';
 import { PageRoute } from '../types';
 import { AGENCY_INFO } from '../data/agencyData';
@@ -64,34 +65,40 @@ export const Footer: React.FC<FooterProps> = ({ onRouteChange }) => {
             </h4>
             <ul className="space-y-3 text-sm">
               <li>
-                <button onClick={() => handleLink('home')} className="hover:text-white transition-colors cursor-pointer">
+                <Link to="/" onClick={scrollToTop} className="hover:text-white transition-colors">
                   Home
-                </button>
+                </Link>
               </li>
               <li>
-                <button onClick={() => handleLink('services')} className="hover:text-white transition-colors cursor-pointer">
+                <Link to="/services" onClick={scrollToTop} className="hover:text-white transition-colors">
                   Services
-                </button>
+                </Link>
               </li>
               <li>
-                <button onClick={() => handleLink('portfolio')} className="hover:text-white transition-colors cursor-pointer">
-                  Portfolio
-                </button>
+                <Link to="/portfolio" onClick={scrollToTop} className="hover:text-white transition-colors">
+                  Portfolio &amp; Case Studies
+                </Link>
               </li>
               <li>
-                <button onClick={() => handleLink('blog')} className="hover:text-white transition-colors cursor-pointer">
-                  Blog
-                </button>
+                <Link to="/blog" onClick={scrollToTop} className="hover:text-white transition-colors">
+                  Engineering Blog
+                </Link>
               </li>
               <li>
-                <button onClick={() => handleLink('team')} className="hover:text-white transition-colors cursor-pointer">
+                <Link to="/team" onClick={scrollToTop} className="hover:text-white transition-colors">
                   Team
-                </button>
+                </Link>
               </li>
               <li>
-                <button onClick={() => handleLink('contact')} className="hover:text-white transition-colors cursor-pointer">
+                <Link to="/contact" onClick={scrollToTop} className="hover:text-white transition-colors">
                   Contact
-                </button>
+                </Link>
+              </li>
+              <li>
+                <Link to="/gwalior" onClick={scrollToTop} className="text-[#58A6FF] hover:underline transition-colors flex items-center gap-1 font-medium">
+                  <span>Digital Agency in Gwalior</span>
+                  <ArrowUpRight size={12} />
+                </Link>
               </li>
             </ul>
           </div>
@@ -102,12 +109,41 @@ export const Footer: React.FC<FooterProps> = ({ onRouteChange }) => {
               Core Services
             </h4>
             <ul className="space-y-3 text-sm">
-              <li className="hover:text-white transition-colors cursor-pointer" onClick={() => handleLink('services')}>Web Development</li>
-              <li className="hover:text-white transition-colors cursor-pointer" onClick={() => handleLink('services')}>Product Design</li>
-              <li className="hover:text-white transition-colors cursor-pointer" onClick={() => handleLink('services')}>UI/UX Design</li>
-              <li className="hover:text-white transition-colors cursor-pointer" onClick={() => handleLink('services')}>Branding & Identity</li>
-              <li className="hover:text-white transition-colors cursor-pointer" onClick={() => handleLink('services')}>E-Commerce</li>
-              <li className="hover:text-white transition-colors cursor-pointer" onClick={() => handleLink('services')}>SEO & Performance</li>
+              <li>
+                <Link to="/services/web-development" onClick={scrollToTop} className="hover:text-white transition-colors">
+                  Web Development
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/ui-ux-design" onClick={scrollToTop} className="hover:text-white transition-colors">
+                  UI/UX Design
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/branding-identity" onClick={scrollToTop} className="hover:text-white transition-colors">
+                  Branding &amp; Identity
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/product-design" onClick={scrollToTop} className="hover:text-white transition-colors">
+                  Product Design
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/e-commerce-solutions" onClick={scrollToTop} className="hover:text-white transition-colors">
+                  E-Commerce Solutions
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/seo-performance" onClick={scrollToTop} className="hover:text-white transition-colors">
+                  SEO &amp; Performance
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/technical-consultancy" onClick={scrollToTop} className="hover:text-white transition-colors">
+                  Technical Consultancy
+                </Link>
+              </li>
             </ul>
           </div>
 

@@ -1,7 +1,8 @@
 import React from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { motion, type Variants } from 'motion/react';
-import { Zap, MessageCircle, CodeXml, ArrowRight, CircleCheck, Layers, Award, Sparkles } from 'lucide-react';
-import { AGENCY_INFO, TRUSTED_BADGES, PROBLEMS, SOLUTIONS, PILLARS, SERVICES, TEAM } from '../data/agencyData';
+import { Zap, MessageCircle, CodeXml, ArrowRight, CircleCheck, Layers, Award, Sparkles, MapPin, BookOpen, Briefcase } from 'lucide-react';
+import { AGENCY_INFO, TRUSTED_BADGES, PROBLEMS, SOLUTIONS, PILLARS, SERVICES, PROJECTS, TEAM } from '../data/agencyData';
 import { PageRoute } from '../types';
 import { Icon } from '../components/Icon';
 import { CTASection } from '../components/CTASection';
@@ -28,6 +29,7 @@ const fadeInUp: Variants = {
 };
 
 export const HomePage: React.FC<HomePageProps> = ({ onRouteChange }) => {
+  const navigate = useNavigate();
   const homeSchema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -202,6 +204,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onRouteChange }) => {
               </span>
             ))}
           </div>
+
+          {/* Regional Hub Internal Link */}
+          <div className="mt-8 text-center">
+            <Link
+              to="/gwalior"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-medium text-[#8b949e] hover:text-white bg-[#161b22]/90 border border-[#30363d] hover:border-[#58A6FF]/60 transition-all shadow-md group"
+            >
+              <MapPin size={14} className="text-[#58A6FF] group-hover:scale-110 transition-transform" />
+              <span>
+                Looking for digital engineering in Central India? Explore our dedicated <span className="text-[#58A6FF] underline underline-offset-4 font-semibold">Digital Agency in Gwalior</span> hub &rarr;
+              </span>
+            </Link>
+          </div>
         </motion.div>
       </motion.section>
 
@@ -325,48 +340,55 @@ export const HomePage: React.FC<HomePageProps> = ({ onRouteChange }) => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {SERVICES.slice(0, 6).map((srv, idx) => (
-            <motion.div 
-              key={srv.id} 
-              className="ss-card p-8 flex flex-col justify-between group hover:border-[#58A6FF]/50"
-              variants={{
-                hidden: { opacity: 0, y: 35 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.6, delay: idx * 0.08, ease: customEase }
-                }
-              }}
-              whileHover={{ y: -5, transition: { duration: 0.2 } }}
-            >
-              <div>
-                <div
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110"
-                  style={{ background: `${srv.color}18`, color: srv.color }}
-                >
-                  <Icon name={srv.iconName} size={28} />
+          {SERVICES.slice(0, 6).map((srv, idx) => {
+            const serviceSlug = srv.slug || 'web-development';
+            return (
+              <motion.div 
+                key={srv.id} 
+                className="ss-card p-8 flex flex-col justify-between group hover:border-[#58A6FF]/50 cursor-pointer"
+                onClick={() => {
+                  navigate(`/services/${serviceSlug}`);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                variants={{
+                  hidden: { opacity: 0, y: 35 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.6, delay: idx * 0.08, ease: customEase }
+                  }
+                }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              >
+                <div>
+                  <div
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110"
+                    style={{ background: `${srv.color}18`, color: srv.color }}
+                  >
+                    <Icon name={srv.iconName} size={28} />
+                  </div>
+                  <h3 className="text-xl font-display font-bold text-white mb-3 group-hover:text-[#58A6FF] transition-colors">
+                    {srv.title}
+                  </h3>
+                  <p className="text-sm text-[#8b949e] leading-relaxed mb-6">
+                    {srv.desc}
+                  </p>
                 </div>
-                <h3 className="text-xl font-display font-bold text-white mb-3 group-hover:text-[#58A6FF] transition-colors">
-                  {srv.title}
-                </h3>
-                <p className="text-sm text-[#8b949e] leading-relaxed mb-6">
-                  {srv.desc}
-                </p>
-              </div>
 
-              <div className="pt-6 border-t border-[#30363d]/60 flex items-center justify-between">
-                <span className="text-xs font-mono uppercase tracking-wider text-[#8b949e]">
-                  Custom Quote
-                </span>
-                <button
-                  onClick={() => onRouteChange('services')}
-                  className="text-xs font-semibold text-[#58A6FF] flex items-center gap-1 group-hover:translate-x-1 transition-transform cursor-pointer"
-                >
-                  Explore benefits <ArrowRight size={14} />
-                </button>
-              </div>
-            </motion.div>
-          ))}
+                <div className="pt-6 border-t border-[#30363d]/60 flex items-center justify-between">
+                  <span className="text-xs font-mono uppercase tracking-wider text-[#8b949e]">
+                    Custom Quote
+                  </span>
+                  <span
+                    className="text-xs font-semibold text-[#58A6FF] flex items-center gap-1 group-hover:translate-x-1 transition-transform"
+                  >
+                    <span>Explore details</span>
+                    <ArrowRight size={14} />
+                  </span>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
         <motion.div 
@@ -381,6 +403,108 @@ export const HomePage: React.FC<HomePageProps> = ({ onRouteChange }) => {
             <ArrowRight size={16} />
           </button>
         </motion.div>
+      </motion.section>
+
+      {/* Featured Projects & Case Studies Section */}
+      <motion.section 
+        className="py-24 max-w-6xl mx-auto px-6 border-t border-[#30363d]/60"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.12 }}
+      >
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-14 gap-4">
+          <motion.div variants={fadeInUp}>
+            <span className="section-label mb-3">
+              <Briefcase size={14} className="text-[#58A6FF]" />
+              <span>Proven Deliverables</span>
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-display font-bold text-white mb-2">
+              Featured Client <span className="gradient-text">Case Studies</span>
+            </h2>
+            <p className="text-sm text-[#8b949e] max-w-xl">
+              Real-world systems engineered by Spark Station for regional leaders and modern enterprises.
+            </p>
+          </motion.div>
+          <motion.div variants={fadeInUp}>
+            <Link
+              to="/portfolio"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#58A6FF] hover:underline underline-offset-4"
+            >
+              <span>Explore All 11 Projects</span>
+              <ArrowRight size={16} />
+            </Link>
+          </motion.div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {PROJECTS.slice(0, 3).map((proj, idx) => {
+            const caseStudyUrl = `/portfolio/${proj.slug || proj.id}`;
+            return (
+              <motion.div
+                key={proj.id}
+                className="ss-card overflow-hidden flex flex-col justify-between group hover:border-[#58A6FF]/40 transition-all duration-300"
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.6, delay: idx * 0.1, ease: customEase }
+                  }
+                }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              >
+                <div>
+                  <div className="h-48 overflow-hidden relative bg-[#161b22]">
+                    <img
+                      src={proj.image}
+                      alt={`${proj.title} Web Application by Spark Station`}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#161b22] via-transparent to-transparent opacity-80" />
+                    <span className="absolute top-3 right-3 text-[11px] px-2.5 py-1 rounded-full bg-[#0d1117]/80 text-[#58A6FF] border border-[#58A6FF]/30 backdrop-blur-sm font-mono">
+                      {proj.category}
+                    </span>
+                  </div>
+
+                  <div className="p-6">
+                    <h3 className="text-lg font-display font-bold text-white mb-2 group-hover:text-[#58A6FF] transition-colors">
+                      <Link to={caseStudyUrl}>{proj.title}</Link>
+                    </h3>
+                    <p className="text-xs text-[#8b949e] line-clamp-2 leading-relaxed mb-4">
+                      {proj.desc}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {proj.tags.slice(0, 3).map((t, i) => (
+                        <span key={i} className="text-[10px] px-2 py-0.5 rounded bg-[#21262d] text-[#8b949e]">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="px-6 pb-6 pt-2 border-t border-[#30363d]/40 flex items-center justify-between">
+                  <Link
+                    to={caseStudyUrl}
+                    className="text-xs font-semibold text-[#58A6FF] hover:underline flex items-center gap-1"
+                  >
+                    <span>Read Case Study</span>
+                    <ArrowRight size={13} />
+                  </Link>
+                  <a
+                    href={proj.liveUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[11px] text-[#8b949e] hover:text-white transition-colors"
+                  >
+                    Live Preview &rarr;
+                  </a>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
       </motion.section>
 
       {/* 4 Pillars Section */}
@@ -495,6 +619,115 @@ export const HomePage: React.FC<HomePageProps> = ({ onRouteChange }) => {
               </div>
             </motion.div>
           ))}
+        </div>
+      </motion.section>
+
+      {/* Engineering Insights & Blog Section */}
+      <motion.section 
+        className="py-24 max-w-6xl mx-auto px-6 border-t border-[#30363d]/60"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.12 }}
+      >
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-14 gap-4">
+          <motion.div variants={fadeInUp}>
+            <span className="section-label mb-3">
+              <BookOpen size={14} className="text-[#8B5CF6]" />
+              <span>Thought Leadership</span>
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-display font-bold text-white mb-2">
+              Engineering &amp; Growth <span className="gradient-text">Insights</span>
+            </h2>
+            <p className="text-sm text-[#8b949e] max-w-xl">
+              Transparent analyses on website pricing, software architecture, conversion design, and business scale.
+            </p>
+          </motion.div>
+          <motion.div variants={fadeInUp}>
+            <Link
+              to="/blog"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#8B5CF6] hover:underline underline-offset-4"
+            >
+              <span>Explore All Articles</span>
+              <ArrowRight size={16} />
+            </Link>
+          </motion.div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <motion.div
+            className="ss-card p-6 flex flex-col justify-between group hover:border-[#8B5CF6]/40 transition-colors"
+            variants={fadeInUp}
+            whileHover={{ y: -4, transition: { duration: 0.2 } }}
+          >
+            <div>
+              <span className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-[#8B5CF6]/15 text-[#A371F7] mb-4 inline-block">
+                Pricing Guide
+              </span>
+              <h3 className="text-lg font-display font-bold text-white mb-3 group-hover:text-[#58A6FF] transition-colors leading-snug">
+                <Link to="/blog/how-much-does-a-website-cost">How Much Does a Website Cost? A Complete Pricing Guide</Link>
+              </h3>
+              <p className="text-xs text-[#8b949e] leading-relaxed mb-6">
+                A transparent breakdown of website development costs in India. Learn realistic budgets for landing pages, business portals, and e-commerce.
+              </p>
+            </div>
+            <Link
+              to="/blog/how-much-does-a-website-cost"
+              className="text-xs font-semibold text-[#58A6FF] hover:underline flex items-center gap-1"
+            >
+              <span>Read article</span>
+              <ArrowRight size={12} />
+            </Link>
+          </motion.div>
+
+          <motion.div
+            className="ss-card p-6 flex flex-col justify-between group hover:border-[#8B5CF6]/40 transition-colors"
+            variants={fadeInUp}
+            whileHover={{ y: -4, transition: { duration: 0.2 } }}
+          >
+            <div>
+              <span className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-[#58A6FF]/15 text-[#58A6FF] mb-4 inline-block">
+                Conversion Strategy
+              </span>
+              <h3 className="text-lg font-display font-bold text-white mb-3 group-hover:text-[#58A6FF] transition-colors leading-snug">
+                <Link to="/blog/website-vs-landing-page">Website vs. Landing Page: Which is Better for Your Business?</Link>
+              </h3>
+              <p className="text-xs text-[#8b949e] leading-relaxed mb-6">
+                Discover the architectural differences between a multi-page company presence and a single-screen conversion landing page.
+              </p>
+            </div>
+            <Link
+              to="/blog/website-vs-landing-page"
+              className="text-xs font-semibold text-[#58A6FF] hover:underline flex items-center gap-1"
+            >
+              <span>Read article</span>
+              <ArrowRight size={12} />
+            </Link>
+          </motion.div>
+
+          <motion.div
+            className="ss-card p-6 flex flex-col justify-between group hover:border-[#8B5CF6]/40 transition-colors"
+            variants={fadeInUp}
+            whileHover={{ y: -4, transition: { duration: 0.2 } }}
+          >
+            <div>
+              <span className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-[#34D399]/15 text-[#34D399] mb-4 inline-block">
+                Business Growth
+              </span>
+              <h3 className="text-lg font-display font-bold text-white mb-3 group-hover:text-[#58A6FF] transition-colors leading-snug">
+                <Link to="/blog/how-websites-help-businesses-grow">How Modern Websites Help Businesses Grow and Maximize ROI</Link>
+              </h3>
+              <p className="text-xs text-[#8b949e] leading-relaxed mb-6">
+                How custom React development, sub-second performance, and technical SEO turn web assets into 24/7 client-generating engines.
+              </p>
+            </div>
+            <Link
+              to="/blog/how-websites-help-businesses-grow"
+              className="text-xs font-semibold text-[#58A6FF] hover:underline flex items-center gap-1"
+            >
+              <span>Read article</span>
+              <ArrowRight size={12} />
+            </Link>
+          </motion.div>
         </div>
       </motion.section>
 

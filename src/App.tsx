@@ -4,7 +4,7 @@
  */
 
 import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate, useLocation, Navigate, useParams } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { PageRoute } from './types';
 import { Navbar } from './components/Navbar';
@@ -19,7 +19,22 @@ import { TeamMemberProfilePage } from './pages/TeamMemberProfilePage';
 import { BlogListPage } from './pages/BlogListPage';
 import { BlogPostPage } from './pages/BlogPostPage';
 import { AdminDashboardPage } from './pages/AdminDashboardPage';
+import { ServiceDetailPage } from './pages/ServiceDetailPage';
+import { GwaliorPage } from './pages/GwaliorPage';
+import { CaseStudyDetailPage } from './pages/CaseStudyDetailPage';
+import { NotFoundPage } from './pages/NotFoundPage';
 import { TEAM } from './data/agencyData';
+
+// Technical SEO Redirect Handlers to consolidate canonical ranking signals
+const ServiceRedirect: React.FC = () => {
+  const { slug } = useParams<{ slug: string }>();
+  return <Navigate to={`/services/${slug}`} replace />;
+};
+
+const CaseStudyRedirect: React.FC = () => {
+  const { slug } = useParams<{ slug: string }>();
+  return <Navigate to={`/portfolio/${slug}`} replace />;
+};
 
 function AppContent() {
   const navigate = useNavigate();
@@ -35,6 +50,12 @@ function AppContent() {
     if (isTeamMember) {
       return 'team';
     }
+    if (decodedPath.startsWith('/services')) {
+      return 'services';
+    }
+    if (decodedPath.startsWith('/portfolio') || decodedPath.startsWith('/case-study') || decodedPath.startsWith('/case-studies')) {
+      return 'portfolio';
+    }
     if (decodedPath.startsWith('/blog')) {
       return 'blog';
     }
@@ -43,6 +64,9 @@ function AppContent() {
     }
     switch (decodedPath) {
       case '/':
+        return 'home';
+      case '/gwalior':
+      case '/digital-agency-in-gwalior':
         return 'home';
       case '/services':
         return 'services';
@@ -85,13 +109,20 @@ function AppContent() {
       <main className="flex-1 pt-24 md:pt-28 w-full overflow-x-hidden">
         <Routes>
           <Route path="/" element={<HomePage onRouteChange={handleRouteChange} />} />
+          <Route path="/gwalior" element={<GwaliorPage onRouteChange={handleRouteChange} />} />
+          <Route path="/digital-agency-in-gwalior" element={<Navigate to="/gwalior" replace />} />
           <Route path="/services" element={<ServicesPage onRouteChange={handleRouteChange} />} />
+          <Route path="/services/:slug" element={<ServiceDetailPage onRouteChange={handleRouteChange} />} />
+          <Route path="/service/:slug" element={<ServiceRedirect />} />
           <Route path="/portfolio" element={<PortfolioPage onRouteChange={handleRouteChange} />} />
+          <Route path="/portfolio/:slug" element={<CaseStudyDetailPage onRouteChange={handleRouteChange} />} />
+          <Route path="/case-study/:slug" element={<CaseStudyRedirect />} />
+          <Route path="/case-studies/:slug" element={<CaseStudyRedirect />} />
           <Route path="/team" element={<TeamPage onRouteChange={handleRouteChange} />} />
-          <Route path="/founder" element={<FounderPage onRouteChange={handleRouteChange} />} />
+          <Route path="/founder" element={<Navigate to="/saksham-pandey" replace />} />
           <Route path="/saksham-pandey" element={<FounderPage onRouteChange={handleRouteChange} />} />
-          <Route path="/Saksham Pandey" element={<FounderPage onRouteChange={handleRouteChange} />} />
-          <Route path="/Saksham%20Pandey" element={<FounderPage onRouteChange={handleRouteChange} />} />
+          <Route path="/Saksham Pandey" element={<Navigate to="/saksham-pandey" replace />} />
+          <Route path="/Saksham%20Pandey" element={<Navigate to="/saksham-pandey" replace />} />
           {TEAM.filter(m => m.slug !== 'saksham-pandey').map((member) => {
             const routeProps = {
               path: `/${member.slug}`,
@@ -109,8 +140,9 @@ function AppContent() {
           <Route path="/blog/:slug" element={<BlogPostPage onRouteChange={handleRouteChange} />} />
           <Route path="/admin" element={<AdminDashboardPage onRouteChange={handleRouteChange} />} />
           <Route path="/contact" element={<ContactPage />} />
-          {/* Fallback route */}
-          <Route path="*" element={<HomePage onRouteChange={handleRouteChange} />} />
+          {/* SEO 404 Page & Catch-all */}
+          <Route path="/404" element={<NotFoundPage onRouteChange={handleRouteChange} />} />
+          <Route path="*" element={<NotFoundPage onRouteChange={handleRouteChange} />} />
         </Routes>
       </main>
 

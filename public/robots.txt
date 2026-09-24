@@ -1,6 +1,10 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /api/
 
 # Sitemaps
 Sitemap: https://sparkstation.vercel.app/sitemap.xml
+Host: https://sparkstation.vercel.app

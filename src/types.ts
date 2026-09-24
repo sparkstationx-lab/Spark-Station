@@ -1,5 +1,6 @@
 export interface ServiceItem {
   id: string;
+  slug?: string;
   title: string;
   desc: string;
   iconName: string;
@@ -45,6 +46,7 @@ export interface ProjectCategory {
 
 export interface ProjectItem {
   id: string;
+  slug?: string;
   title: string;
   category: string;
   desc: string;

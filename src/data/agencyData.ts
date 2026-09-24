@@ -16,6 +16,7 @@ export const AGENCY_INFO = {
 export const PROJECTS: ProjectItem[] = [
   {
     id: 'electronics-shop',
+    slug: 'shrinit-enterprises',
     title: 'Shrinit Enterprises',
     category: 'web',
     desc: 'Comprehensive e-commerce platform for retail electronics, featuring streamlined catalog management and secure checkout.',
@@ -25,6 +26,7 @@ export const PROJECTS: ProjectItem[] = [
   },
   {
     id: 'chiranjivi-clinic',
+    slug: 'chiranjivi-clinic',
     title: 'Chiranjivi Clinic',
     category: 'web',
     desc: 'Patient-centric medical service portal facilitating seamless appointment scheduling and digital health record management.',
@@ -34,6 +36,7 @@ export const PROJECTS: ProjectItem[] = [
   },
   {
     id: 'jhansi-empire',
+    slug: 'jhansi-empire',
     title: 'Jhansi Empire',
     category: 'web',
     desc: 'Professional real estate and housing society management portal showcasing residential property listings.',
@@ -43,6 +46,7 @@ export const PROJECTS: ProjectItem[] = [
   },
   {
     id: 'advance-property',
+    slug: 'advance-property-construction',
     title: 'Advance Property Construction',
     category: 'web',
     desc: 'Modern construction company website featuring project portfolios and service capabilities for commercial and residential developments.',
@@ -52,6 +56,7 @@ export const PROJECTS: ProjectItem[] = [
   },
   {
     id: 'shayona-space',
+    slug: 'shayona-space',
     title: 'Shayona Space',
     category: 'web',
     desc: 'High-end real estate property showcase platform focused on architectural aesthetics and luxury living spaces.',
@@ -61,6 +66,7 @@ export const PROJECTS: ProjectItem[] = [
   },
   {
     id: 'futura-groups',
+    slug: 'futura-groups',
     title: 'Futura Groups',
     category: 'web',
     desc: 'Strategic real estate development portal designed for high-volume property listings and investor engagement.',
@@ -70,6 +76,7 @@ export const PROJECTS: ProjectItem[] = [
   },
   {
     id: 'pavitra-mobiles',
+    slug: 'pavitra-mobiles',
     title: 'Pavitra Mobiles',
     category: 'web',
     desc: 'Mobile phone retailer portal showcasing latest gadgets and accessories.',
@@ -79,6 +86,7 @@ export const PROJECTS: ProjectItem[] = [
   },
   {
     id: 'happy-tooth',
+    slug: 'happy-tooth',
     title: 'Happy Tooth',
     category: 'web',
     desc: 'Dental clinic appointment and services portal for comprehensive dental care.',
@@ -88,6 +96,7 @@ export const PROJECTS: ProjectItem[] = [
   },
   {
     id: 'adarsh-gupta',
+    slug: 'adarsh-gupta-ca',
     title: 'Adarsh Gupta CA',
     category: 'web',
     desc: 'Professional Chartered Accountant portal providing financial services and advisory.',
@@ -97,6 +106,7 @@ export const PROJECTS: ProjectItem[] = [
   },
   {
     id: 'real-estate',
+    slug: 'real-estate-portal',
     title: 'Real Estate',
     category: 'web',
     desc: 'Property listing and management platform for commercial and residential real estate.',
@@ -106,6 +116,7 @@ export const PROJECTS: ProjectItem[] = [
   },
   {
     id: 'abati',
+    slug: 'abati-living',
     title: 'Abati',
     category: 'web',
     desc: 'Real estate development and property showcase for modern living.',
@@ -165,8 +176,9 @@ export const PILLARS = [
 export const SERVICES: ServiceItem[] = [
   {
     id: "web-dev",
+    slug: "web-development",
     title: "Web Development",
-    desc: "Modern, responsive, high-performance websites built with React, Next.js, and modern tools. Fast load times & SEO optimized.",
+    desc: "Modern, responsive, high-performance websites built with React, Next.js, and modern tools. Fast load times & SEO optimized for Gwalior and global clients.",
     iconName: "CodeXml",
     color: "#58A6FF",
     benefits: ["Fast Delivery", "Quality Code", "Custom Pricing", "Ongoing Support"],
@@ -174,6 +186,7 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     id: "ui-ux",
+    slug: "ui-ux-design",
     title: "UI/UX Design",
     desc: "Intuitive, conversion-focused design systems, prototypes, and user interfaces that delight your customers.",
     iconName: "Layout",
@@ -183,6 +196,7 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     id: "branding",
+    slug: "branding-identity",
     title: "Branding & Identity",
     desc: "Distinctive logos, color palettes, typography, and complete brand guidelines that make your business stand out.",
     iconName: "Palette",
@@ -192,6 +206,7 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     id: "product-design",
+    slug: "product-design",
     title: "Product Design",
     desc: "From MVP ideation to full product roadmap and wireframes. We help shape your vision into a viable digital product.",
     iconName: "Compass",
@@ -201,6 +216,7 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     id: "ecommerce",
+    slug: "e-commerce-solutions",
     title: "E-Commerce Solutions",
     desc: "Scalable online stores with seamless checkout, payment gateway integrations, and robust inventory management.",
     iconName: "ShoppingBag",
@@ -210,6 +226,7 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     id: "seo",
+    slug: "seo-performance",
     title: "SEO & Performance",
     desc: "Technical SEO audits, core web vitals optimization, structured data, and comprehensive organic search campaigns to help your business dominate search rankings.",
     iconName: "Search",
@@ -219,6 +236,7 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     id: "consultancy",
+    slug: "technical-consultancy",
     title: "Technical Consultancy",
     desc: "Architecture reviews, tech stack selection, cloud infrastructure setup, and technical leadership for growing engineering teams.",
     iconName: "Cpu",

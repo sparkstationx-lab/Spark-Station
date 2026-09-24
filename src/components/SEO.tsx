@@ -22,8 +22,16 @@ export const SEO: React.FC<SEOProps> = ({
   robots = 'index, follow',
   themeColor = '#0d1117',
 }) => {
-  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://sparkstation.vercel.app';
-  const canonicalUrl = `${origin}${path}`;
+  // Always resolve to the production canonical domain to prevent staging/preview domain indexing issues
+  const BASE_DOMAIN = 'https://sparkstation.vercel.app';
+  
+  // Clean path: strip query params, hashes, leading/trailing extraneous slashes
+  const cleanPath = path.split('?')[0].split('#')[0];
+  const normalizedPath = cleanPath === '/' || cleanPath === '' 
+    ? '' 
+    : cleanPath.startsWith('/') ? cleanPath.replace(/\/+$/, '') : `/${cleanPath.replace(/\/+$/, '')}`;
+
+  const canonicalUrl = `${BASE_DOMAIN}${normalizedPath || '/'}`;
 
   return (
     <>
