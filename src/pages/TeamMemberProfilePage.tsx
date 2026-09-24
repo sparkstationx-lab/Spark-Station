@@ -143,6 +143,7 @@ export const TeamMemberProfilePage: React.FC<TeamMemberProfilePageProps> = ({ on
                 <img 
                   src={member.avatarUrl} 
                   alt={member.name} 
+                  referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transition duration-700 ease-out group-hover/avatar:scale-105"
                   loading="lazy"
                 />

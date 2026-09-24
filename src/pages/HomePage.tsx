@@ -596,6 +596,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onRouteChange }) => {
                 <img
                   src={mbr.avatarUrl}
                   alt={mbr.name}
+                  referrerPolicy="no-referrer"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#161b22] via-transparent to-transparent" />

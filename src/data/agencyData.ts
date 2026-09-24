@@ -317,6 +317,44 @@ export const TEAM: TeamMember[] = [
     }
   },
   {
+    slug: "shivam-sharma",
+    name: "Shivam Sharma",
+    role: "Developer & Co-Founder",
+    bio: "Co-founding Spark Station and engineering scalable, high-performance web applications. Specialized in modern frontend systems, full-stack architecture, and cloud deployment.",
+    tagline: "Full-Stack Software Engineer & Co-Founder.",
+    aboutLong: "Shivam Sharma is the Developer and Co-Founder of Spark Station. Working alongside Saksham Pandey to establish and scale the agency's engineering foundation, Shivam leads core software engineering, application architecture, and performance optimization. With extensive experience across modern web technologies, React, TypeScript, Node.js, and cloud ecosystems, he transforms ambitious product visions into production-ready, lightning-fast digital solutions.",
+    experience: "3+ Years Web & Systems",
+    contact: "mailto:shivam@sparkstation.agency",
+    skills: ["Full-Stack Development", "React / Next.js", "TypeScript", "Node.js", "System Architecture", "API Integration", "Tailwind CSS", "Database Design"],
+    color: "#38BDF8",
+    avatarUrl: "/shivam.jpg",
+    responsibilities: [
+      "Core Full-Stack Software Engineering",
+      "Technical Architecture & System Design",
+      "Co-Founding Strategic Direction & Product Roadmap",
+      "Code Quality, CI/CD & Performance Optimization"
+    ],
+    experienceList: [
+      {
+        role: "Developer & Co-Founder",
+        company: "Spark Station",
+        period: "2024 - Present",
+        desc: "Co-founded Spark Station; spearheading core software engineering, modern web app delivery, system scalability, and technical client solutions."
+      },
+      {
+        role: "Software Developer",
+        company: "Tech Solutions Lab",
+        period: "2022 - 2024",
+        desc: "Developed modern responsive web applications, modular UI components, and integrated secure high-throughput REST and GraphQL APIs."
+      }
+    ],
+    socials: {
+      email: "shivam@sparkstation.agency",
+      linkedin: "https://www.linkedin.com",
+      github: "https://github.com"
+    }
+  },
+  {
     slug: "shashwat",
     name: "Shashwat Rai",
     role: "Finance Manager",

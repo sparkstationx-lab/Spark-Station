@@ -72,6 +72,7 @@ export const TeamPage: React.FC<TeamPageProps> = ({ onRouteChange }) => {
                   <img
                     src={member.avatarUrl}
                     alt={member.name}
+                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#161b22] via-[#161b22]/20 to-transparent" />
@@ -126,15 +127,19 @@ export const TeamPage: React.FC<TeamPageProps> = ({ onRouteChange }) => {
                   style={{
                     background: member.slug === 'saksham-pandey'
                       ? 'linear-gradient(135deg, rgba(88,166,255,0.15) 0%, rgba(139,92,246,0.15) 100%)'
+                      : member.slug === 'shivam-sharma'
+                      ? 'linear-gradient(135deg, rgba(56,189,248,0.18) 0%, rgba(59,130,246,0.18) 100%)'
                       : `${member.color}15`,
                     color: member.color,
                     borderColor: member.slug === 'saksham-pandey'
                       ? 'rgba(88,166,255,0.35)'
+                      : member.slug === 'shivam-sharma'
+                      ? 'rgba(56,189,248,0.35)'
                       : `${member.color}35`,
                   }}
                 >
                   <Users size={16} />
-                  <span>{member.slug === 'saksham-pandey' ? 'View Bento Profile' : 'View Profile'}</span>
+                  <span>{member.slug === 'saksham-pandey' ? 'View Bento Profile' : member.slug === 'shivam-sharma' ? 'View Co-Founder Profile' : 'View Profile'}</span>
                   <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
