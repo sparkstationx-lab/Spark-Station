@@ -327,7 +327,7 @@ export const TEAM: TeamMember[] = [
     contact: "mailto:shivam@sparkstation.agency",
     skills: ["Full-Stack Development", "React / Next.js", "TypeScript", "Node.js", "System Architecture", "API Integration", "Tailwind CSS", "Database Design"],
     color: "#38BDF8",
-    avatarUrl: "/shivams.jpeg",
+    avatarUrl: "/shivam.png",
     responsibilities: [
       "Core Full-Stack Software Engineering",
       "Technical Architecture & System Design",
