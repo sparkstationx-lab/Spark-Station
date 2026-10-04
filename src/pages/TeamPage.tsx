@@ -139,7 +139,7 @@ export const TeamPage: React.FC<TeamPageProps> = ({ onRouteChange }) => {
                   }}
                 >
                   <Users size={16} />
-                  <span>{member.slug === 'saksham-pandey' ? 'View Bento Profile' : member.slug === 'shivam-sharma' ? 'View Co-Founder Profile' : 'View Profile'}</span>
+                  <span>{member.slug === 'saksham-pandey' ? 'View Bento Profile' : member.slug === 'shivam-sharma' ? 'View CEO Profile' : 'View Profile'}</span>
                   <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>

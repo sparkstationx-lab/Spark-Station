@@ -5,7 +5,8 @@
 
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate, useLocation, Navigate, useParams } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
+import * as ReactHelmetAsync from 'react-helmet-async';
+const HelmetProvider = (ReactHelmetAsync as any).HelmetProvider || (ReactHelmetAsync as any).default?.HelmetProvider || ReactHelmetAsync;
 import { PageRoute } from './types';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';

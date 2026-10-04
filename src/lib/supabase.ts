@@ -249,8 +249,18 @@ Don't let a sluggish website hold back your business growth. Reach out to **Spar
 ];
 
 // 2. Initialize Supabase Client (Optionally using environment variables)
-const supabaseUrl = (import.meta as any).env.VITE_SUPABASE_URL || '';
-const supabaseAnonKey = (import.meta as any).env.VITE_SUPABASE_ANON_KEY || '';
+const getEnvVar = (key: string): string => {
+  if (typeof import.meta !== 'undefined' && (import.meta as any)?.env) {
+    return (import.meta as any).env[key] || '';
+  }
+  if (typeof process !== 'undefined' && process.env) {
+    return process.env[key] || '';
+  }
+  return '';
+};
+
+const supabaseUrl = getEnvVar('VITE_SUPABASE_URL');
+const supabaseAnonKey = getEnvVar('VITE_SUPABASE_ANON_KEY');
 
 export const isSupabaseConfigured = Boolean(supabaseUrl && supabaseAnonKey && supabaseUrl !== 'https://your-project-id.supabase.co');
 
@@ -264,6 +274,9 @@ const AUTH_SESSION_KEY = 'spark_station_admin_session';
 
 // Helper to get local posts
 const getLocalPosts = (): BlogPost[] => {
+  if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
+    return SEED_POSTS;
+  }
   const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
   if (!raw) {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(SEED_POSTS));
@@ -285,6 +298,7 @@ const getLocalPosts = (): BlogPost[] => {
 
 // Helper to save local posts
 const saveLocalPosts = (posts: BlogPost[]) => {
+  if (typeof window === 'undefined' || typeof localStorage === 'undefined') return;
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(posts));
 };
 
@@ -479,6 +493,7 @@ export const blogService = {
   },
 
   isLoggedIn(): boolean {
+    if (typeof window === 'undefined' || typeof localStorage === 'undefined') return false;
     if (isSupabaseConfigured && supabase) {
       // In a real scenario, we check active session synchronously (often with a state listener in the component),
       // we can also inspect the localStorage/cookies or token cache.
